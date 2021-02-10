@@ -1,0 +1,20 @@
+@media (min-width: 576px) {
+	.navbar-brand {
+		margin-left: 350px;
+	}
+	
+}
+
+body {
+	padding-top: 3em;
+}
+
+#banner {
+	width: 100%;
+	height: 80px;
+	background-color: aqua;
+}
+
+.content {
+	background-color: #666666;
+}
