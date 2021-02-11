@@ -27,3 +27,14 @@ body {
 	color: white;
 	min-height: 600px;
 }
+
+#login-box {
+	background-color: #181818;
+	margin-top: -16px;
+	padding: 8px 24px;
+	color: #FFF;
+	font-size: 12pt;
+	border-radius: 0 0 12px 12px;
+	border-bottom: 1px solid #777;
+	min-width: 120px;
+}
