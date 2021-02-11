@@ -24,7 +24,11 @@
 </head>
 <body>
 
-<div id="banner"></div>
+<div id="banner">
+	<div class="container">
+		<a href="{{ url_for('home.index') }}"><img src="{{ url_for('static', filename='img/BannerHead.png') }}" alt="BannerHead"></a>
+	</div>
+</div>
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark shadow ">
 	<div class="container">
