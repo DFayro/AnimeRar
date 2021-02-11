@@ -21,16 +21,17 @@
 	<title>Document</title>
 </head>
 <body>
-<div class="fixed-top">
 
-	<div id="banner">BANNER</div>
+<div id="banner"></div>
 
-	<nav class="navbar navbar-expand-sm navbar-dark bg-dark shadow">
-		<a class="navbar-brand">AnimeRar</a>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark shadow ">
+	<div class="container">
+
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
 				aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
+
 		<div class="collapse navbar-collapse" id="navbarToggle">
 			<ul class="navbar-nav mr-auto">
 				{% for nav_el in nav_elements %}
@@ -40,15 +41,13 @@
 				{% endfor %}
 			</ul>
 		</div>
-	</nav>
-	<main role="main">
-		<div class="container content">
-			Lorem ipsum dolor sit amet
-			{% block content %}{% endblock %}
-		</div>
-	</main>
 
-</div>
+	</div>
+</nav>
+
+<main role="main" id="content" class="container shadow-lg rounded-bottom">
+	{% block content %}{% endblock %}
+</main>
 
 
 </body>

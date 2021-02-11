@@ -1,5 +1,10 @@
+import animerar
+
 def main():
-	pass
+	app = animerar.init()
+
+	app.run(debug=True)
+
 
 if __name__ == '__main__':
 	main()
