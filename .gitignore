@@ -5,6 +5,11 @@
 *.iml
 *.idea/
 
+/res
+
+# DB
+*.db
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
