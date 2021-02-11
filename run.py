@@ -1,5 +1,6 @@
 import animerar
 
+
 def main():
 	app = animerar.init()
 
