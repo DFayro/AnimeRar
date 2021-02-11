@@ -1,4 +1,5 @@
 from flask import Flask, url_for, render_template
+from werkzeug.exceptions import BadRequest
 
 from animerar.views import home
 
@@ -10,10 +11,15 @@ def page_not_found(e):
 	return render_template("404.html"), 404
 
 
+def bad_request(e):
+	return render_template("bad_request.html")
+
+
 def init():
 	app = Flask(__name__, template_folder=SHARED_TEMPLATE_FOLDER, static_folder=SHARED_STATIC_FOLDER)
 
 	app.register_error_handler(404, page_not_found)
+	app.register_error_handler(BadRequest, bad_request)
 
 	# Blueprints
 	app.register_blueprint(home.blueprint)
