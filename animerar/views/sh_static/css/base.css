@@ -1,3 +1,8 @@
+@font-face {
+	font-family: "Noto Sans";
+	src: url("../NotoSansJP-Regular.otf") format("opentype");
+}
+
 html {
 	padding: 0;
 	margin: 0;
@@ -5,6 +10,7 @@ html {
 
 body {
 	background-color: #181818;
+	font-family: "Noto Sans", Arial, sans-serif;
 }
 
 #banner {
@@ -15,7 +21,9 @@ body {
 
 #content {
 	background-color: #777777;
-	padding-top: 12px;
+	padding-top: 22px;
+	padding-left: 32px;
+	padding-right: 60px;
 	color: white;
-	min-height: 600px
+	min-height: 600px;
 }
