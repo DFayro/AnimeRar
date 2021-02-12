@@ -7,69 +7,58 @@
 {% endblock %}
 
 {% block content %}
-<form id="register-form" class="container" method="post" action="">
+<form id="register-form" class="container needs-" method="post" action="">
 	<h1><b>Sign-up</b></h1>
 
 	<P style="float:left">Sign up for a free account.</P>
 	<img id="nezuko-sticker" src="{{ url_for('.static', filename='img/nezuko_sticker.png') }}" alt="Nezuko Sticker"/>
 
-	<div class="form-group input-group">
+	<div class="input-group">
 		<label class="sr-only" for="email-field"></label>
-		<div class="input-group-prepend">
-			<span class="input-group-text"><i class="fa fa-envelope"></i></span>
+		<span class="input-group-text"><i class="fa fa-envelope"></i></span>
+		<input class="form-control" type="email" name="email" id="email-field" placeholder="E-mail"
+			   value="{{ request.form.get('email', '') }}" required>
+		<div class="valid-feedback">
+			Looks good!
 		</div>
-		<input class="form-control" type="text" name="email" id="email-field" placeholder="E-mail"
-			   value="{{ request.form.get('email', '') }}">
 	</div>
 
 
-	<div class="form-group input-group">
+	<div class="input-group">
 		<label class="sr-only" for="display-name-field"></label>
-		<div class="input-group-prepend">
-			<span class="input-group-text"><i class="fa fa-comment-dots"></i></span>
-		</div>
+		<span class="input-group-text"><i class="fa fa-comment-dots"></i></span>
 		<input class="form-control" type="text" name="display_name" id="display-name-field" placeholder="Display Name"
 			   value="{{ request.form.get('display_name', '') }}">
 	</div>
 
-	<div class="form-group">
-		<div class="input-group">
-			<label class="sr-only" for="first-name-field"></label>
-			<div class="input-group-prepend">
-				<span class="input-group-text"><i class="fa fa-user-ninja"></i></span>
-			</div>
-			<input class="form-control mr-3" type="text" name="first_name" id="first-name-field"
-				   placeholder="First Name"
-				   value="{{ request.form.get('first_name', '') }}">
 
-			<label class="sr-only" for="last-name-field"></label>
-			<div class="input-group-prepend">
-				<span class="input-group-text"><i class="fa fa-user-friends"></i></span>
-			</div>
-			<input class="form-control" type="text" name="last_name" id="last-name-field" placeholder="Last Name"
-				   value="{{ request.form.get('last_name', '') }}">
-		</div>
+	<div class="input-group">
+		<label class="sr-only" for="first-name-field"></label>
+		<span class="input-group-text"><i class="fa fa-user-ninja"></i></span>
+		<input class="form-control me-2" type="text" name="first_name" id="first-name-field"
+			   placeholder="First Name"
+			   value="{{ request.form.get('first_name', '') }}">
 
+		<label class="sr-only" for="last-name-field"></label>
+		<span class="input-group-text"><i class="fa fa-user-friends"></i></span>
+		<input class="form-control" type="text" name="last_name" id="last-name-field" placeholder="Last Name"
+			   value="{{ request.form.get('last_name', '') }}">
 	</div>
 
-	<div class="form-group input-group">
+	<div class="input-group">
 		<label class="sr-only" for="password-field"></label>
-		<div class="input-group-prepend">
-			<span class="input-group-text"><i class="fa fa-lock-open"></i></span>
-		</div>
+		<span class="input-group-text"><i class="fa fa-lock-open"></i></span>
 		<input class="form-control" type="password" name="password" id="password-field" placeholder="Password">
 	</div>
 
-	<div class="form-group input-group">
+	<div class="input-group">
 		<label class="sr-only" for="password-repeat-field"></label>
-		<div class="input-group-prepend">
-			<span class="input-group-text"><i class="fa fa-lock"></i></span>
-		</div>
+		<span class="input-group-text"><i class="fa fa-lock"></i></span>
 		<input class="form-control" type="password" name="repeat_password" id="password-repeat-field"
 			   placeholder="Repeat Password">
 	</div>
 
-	<div class="form-group text-right">
+	<div class="text-end">
 		<button class="btn btn-primary" type="submit" id="submit-button">Submit</button>
 	</div>
 

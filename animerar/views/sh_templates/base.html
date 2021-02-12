@@ -5,23 +5,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 
-	<!--JQuery-->
-	<script src="https://code.jquery.com/jquery-3.5.1.js"
-			integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-
 	<!--Font Awesome-->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
 
 	<!--Bootstrap-->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-		  integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-			integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-			crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
-			integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
-			crossorigin="anonymous"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
 	<!--Project-->
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
@@ -65,7 +54,7 @@
 <body>
 
 <div id="banner">
-	<div class="container">
+	<div class="container container-small">
 		<a href="{{ url_for('home.index') }}">
 			<img src="{{ url_for('static', filename='img/BannerHead.png') }}" alt="BannerHead">
 		</a>
@@ -74,9 +63,9 @@
 
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark shadow" id="main-nav-bar">
-	<div class="container">
+	<div class="container container-small">
 
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle"
 				aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>

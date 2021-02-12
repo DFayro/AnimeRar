@@ -35,3 +35,5 @@ def register():
 	navbar = NavBar.default_bar()
 	return render_template("register.html", navbar=navbar)
 
+
+
