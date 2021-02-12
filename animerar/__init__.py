@@ -1,8 +1,7 @@
-import animerar.db
-from flask import Flask, url_for, render_template
+from flask import Flask, render_template
 from werkzeug.exceptions import BadRequest
 
-from animerar.views import home, auth
+import animerar.db
 from animerar.core import auth_handler
 
 SHARED_TEMPLATE_FOLDER = "views/sh_templates"
@@ -30,7 +29,7 @@ def init():
 	app.register_error_handler(BadRequest, bad_request)
 
 	# Blueprints
-	from animerar.views import home
+	from animerar.views import home, auth
 
 	app.register_blueprint(home.blueprint)
 	app.register_blueprint(auth.blueprint, url_prefix="/auth")
