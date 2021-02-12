@@ -25,12 +25,28 @@ body {
 	background-image: url("../img/banner.png");
 }
 
-#content {
+#content-flat {
 	background-color: #777777;
 	padding: 22px 60px 50px 32px;
 	color: white;
 	min-height: 600px;
 	margin-bottom: 60px;
+}
+
+@media screen and (max-width: 570px) {
+	#content-boxed {
+		padding-left: 0;
+	}
+}
+
+#content-boxed {
+	color: white;
+	margin-top: 80px;
+	width: 800px;
+	border-radius: 10px;
+	background-color: #343a40;
+	border: 3px solid #222;
+	padding: 36px 48px 36px 48px;
 }
 
 #main-nav-bar {

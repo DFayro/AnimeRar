@@ -29,3 +29,9 @@ def index():
 			return render_template("login.html", navbar=navbar, login_errors=errors)
 
 	return render_template("login.html", navbar=navbar)
+
+@blueprint.route("/register", methods=['GET', 'POST'])
+def register():
+	navbar = NavBar.default_bar()
+	return render_template("register.html", navbar=navbar)
+

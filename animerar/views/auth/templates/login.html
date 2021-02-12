@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_boxed.html' %}
 
 {% block title %}Login{% endblock %}
 
@@ -6,48 +6,46 @@
 <link rel="stylesheet" href="{{url_for('.static', filename='css/login.css')}}">
 {% endblock %}
 
-{% block rest %}
+{% block content %}
+<form class="container" method="post" action="">
+	<h1><b>Login</b></h1>
 
+	{% if login_errors %}
+	{% for error in login_errors %}
+	<div class="alert alert-danger" role="alert">
+		<strong>{{ error }}</strong>
+	</div>
+	{% endfor %}
+	{% endif %}
 
-<div id="login-box" class="container shadow">
-	<form class="container" method="post" action="">
-		<h1><b>Login</b></h1>
-
-		{% if login_errors %}
-		{% for error in login_errors %}
-		<div class="alert alert-danger" role="alert">
-			<strong>{{ error }}</strong>
-		</div>
-		{% endfor %}
-		{% endif %}
-
-		<div class="form-group">
-			<label for="email-field">E-mail</label>
-			<div class="input-group">
-				<input class="form-control" type="text" name="email" id="email-field" placeholder="E-mail"
-					   value="{{ request.form.get('email', '') }}">
-				<div class="input-group-append">
-					<span class="input-group-text">@</span>
-				</div>
+	<div class="form-group">
+		<label for="email-field">E-mail</label>
+		<div class="input-group">
+			<input class="form-control" type="text" name="email" id="email-field" placeholder="E-mail"
+				   value="{{ request.form.get('email', '') }}">
+			<div class="input-group-append">
+				<span class="input-group-text">@</span>
 			</div>
 		</div>
+	</div>
 
 
-		<div class="form-group">
-			<label for="password-field">
-				Password
-			</label>
-			<input class="form-control" type="password" id="password-field" name="password" placeholder="Password">
-		</div>
+	<div class="form-group">
+		<label for="password-field">
+			Password
+		</label>
+		<input class="form-control" type="password" id="password-field" name="password" placeholder="Password">
+	</div>
 
-		<div class="form-group">
-			<input class="" type="checkbox" id="remember-check">
-			<label for="remember-check">Remember me?</label>
+	<div class="form-group">
+		<input class="" type="checkbox" id="remember-check">
+		<label for="remember-check">Remember me?</label>
 
-			<button class="btn btn-primary" type="submit" id="submit-button">Submit</button>
-		</div>
+		<button class="btn btn-primary" type="submit" id="submit-button">Submit</button>
+	</div>
 
-		<span class="forgot-password"><a href="#">Forgot password?</a></span>
-	</form>
-</div>
+	<span id="sign-up-text"><a href="{{ url_for('auth.register') }}">Sign up!</a></span>
+	<br/>
+	<span id="forgot-password-text"><a href="#">Forgot password?</a></span>
+</form>
 {% endblock %}

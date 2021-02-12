@@ -1,40 +1,26 @@
-
-#login-box {
-	color: white;
-	margin-top: 80px;
-	width: 800px;
-	min-height: 400px;
-	border-radius: 10px;
-	background-color: #343a40;
-	border: 3px solid #222;
-	padding: 36px 48px 36px 48px;
-}
-
-@media screen and (max-width: 570px) {
-	#login-box {
-		padding-left: 0;
-	}
-}
-
-#login-box .btn {
-	background-color: #777;
-	border-color: #999;
-	margin-top: 20px;
-	margin-right: 20px;
-}
-
-#login-box .alert-danger {
-	margin-top: 16px;
-}
-
-.forgot-password a {
+#forgot-password-text a {
 	color: red;
 	text-decoration: none currentcolor solid;
 }
-.forgot-password a:hover {
+#forgot-password-text a:hover {
 	color: darkred;
+}
+
+#sign-up-text a {
+	color: #DDD;
+	text-decoration: none currentcolor solid;
+}
+
+#sign-up-text a:hover {
+	color: #888;
 }
 
 #submit-button {
 	float: right;
+	background-color: #777;
+	border-color: #999;
+}
+
+#submit-button:hover {
+	background-color: #343a40;
 }
