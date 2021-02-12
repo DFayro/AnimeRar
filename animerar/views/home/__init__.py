@@ -6,4 +6,4 @@ blueprint = Blueprint("home", __name__, template_folder="templates", static_fold
 @blueprint.route("/")
 def index():
 	nav_elements = [("Home", "#"), ("Anime", "#"), ("Utattemita", "#"), ("404", "http://localhost:5000/404")]
-	return render_template("index.html", nav_elements=nav_elements)
+	return render_template("home.html", nav_elements=nav_elements)

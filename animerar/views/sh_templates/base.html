@@ -69,12 +69,10 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark shadow" id="main-nav-bar">
 	<div class="container">
 
-
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
 				aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-
 
 		<div class="collapse navbar-collapse" id="navbarToggle">
 			<ul class="navbar-nav mr-auto">
@@ -87,18 +85,14 @@
 
 		</div>
 
-		<div class="navbar-nav ml-auto mt-auto mb-auto" id="account-status-bar">
-			<a href="#">Login</a>
+		<div id="account-status-bar" class="shadow text-center">
+			<a href="{{ url_for('auth.index') }}">Login</a>
 		</div>
-
 
 	</div>
 </nav>
 
-<main role="main" id="content" class="container shadow-lg rounded-bottom">
-	{% block content %}{% endblock %}
-</main>
-
+{% block rest %} {% endblock %}
 
 </body>
 </html>

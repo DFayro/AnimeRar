@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_main.html' %}
 
 {% block head %}
 <link rel="stylesheet" href="{{url_for('.static', filename='css/home.css')}}">
@@ -10,7 +10,7 @@
 <div id="homeCarousel" class="carousel slide" data-ride="carousel">
 	<ol class="carousel-indicators">
 		<li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
-		<li data-target="#homeCarousel" data-slide-to="1""></li>
+		<li data-target="#homeCarousel" data-slide-to="1"></li>
 		<li data-target="#homeCarousel" data-slide-to="2"></li>
 	</ol>
 	<div class="carousel-inner" role="listbox">
