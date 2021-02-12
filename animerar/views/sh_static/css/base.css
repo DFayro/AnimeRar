@@ -39,23 +39,18 @@ body {
 }
 
 #account-status-bar {
-	background-color: #555;
-	margin-top: -20px;
-	margin-right: 60px;
+	background-color: #777;
 	padding: 6px 24px;
-	float: right;
-	color: #FFF;
 	font-size: 12pt;
-	border-radius: 0 0 8px 8px;
-	border-bottom: 1px solid #777;
-	min-width: 120px;
+	border-radius: 8px 8px 8px 8px;
+	border: 2px solid #777;
 }
 
 #account-status-bar a {
-	color: #FFF;
+	color: #BBB;
 	text-decoration: none;
 }
 
 #account-status-bar a:hover {
-	color: #BBB;
+	color: #DDD;
 }
