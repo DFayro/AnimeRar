@@ -19,6 +19,38 @@
 
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
 
+	<script type="text/javascript">
+
+		function moveScroller() {
+			const $anchor = $("#banner");
+			const $scroller = $('#main-nav-bar');
+
+			const move = function () {
+				var st = $(window).scrollTop() - 20;
+				var ot = $anchor.offset().top;
+				if (st > ot) {
+					$scroller.css({
+						position: "fixed",
+						top: "0px",
+						width: "100%"
+					});
+				} else {
+					$scroller.css({
+						position: "relative",
+						top: ""
+					});
+				}
+			};
+
+			$(window).scroll(move);
+			move();
+		}
+
+		$(function () {
+			moveScroller();
+		});
+	</script>
+
 	<title>{% block title %}{% endblock %}</title>
 
 	{% block head %} {% endblock %}
@@ -27,17 +59,21 @@
 
 <div id="banner">
 	<div class="container">
-		<a href="{{ url_for('home.index') }}"><img src="{{ url_for('static', filename='img/BannerHead.png') }}" alt="BannerHead"></a>
+		<a href="{{ url_for('home.index') }}">
+			<img src="{{ url_for('static', filename='img/BannerHead.png') }}" alt="BannerHead">
+		</a>
 	</div>
 </div>
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark shadow ">
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark shadow" id="main-nav-bar">
 	<div class="container">
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
 				aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
+
 
 		<div class="collapse navbar-collapse" id="navbarToggle">
 			<ul class="navbar-nav mr-auto">
@@ -49,8 +85,8 @@
 			</ul>
 		</div>
 
-		<div id="login-box" class="shadow text-center">
-			Login
+		<div id="account-status-bar" class="shadow text-center">
+			<a href="#">Login</a>
 		</div>
 
 	</div>
