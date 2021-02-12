@@ -1,5 +1,5 @@
 from animerar.db.db_short import *
-from animerar.Models import Anime
+from animerar.models import Anime
 from flask import Blueprint, render_template, url_for
 from animerar.core import NavBar
 

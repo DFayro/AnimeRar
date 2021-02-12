@@ -9,7 +9,7 @@ def init_db(flask_app):
 	db_inst = SQLAlchemy(flask_app)
 
 	# Ensure schema is declared by importing each module containing them
-	from animerar import Models
+	from animerar import models
 
 	# Actually create the schema
 	db_inst.create_all()
