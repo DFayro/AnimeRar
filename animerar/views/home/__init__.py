@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template, url_for
+from animerar.core import NavBar
 
 blueprint = Blueprint("home", __name__, template_folder="templates", static_folder="static")
 
 
 @blueprint.route("/")
 def index():
-	nav_elements = [("Home", "#"), ("Anime", "#"), ("Utattemita", "#"), ("404", "http://localhost:5000/404")]
-	return render_template("home.html", nav_elements=nav_elements)
+	navbar = NavBar.default_bar(active_page="Home")
+	return render_template("home.html", navbar=navbar)
