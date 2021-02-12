@@ -1,7 +1,12 @@
+#login-form {
+	width: 75%;
+}
+
 #forgot-password-text a {
 	color: red;
 	text-decoration: none currentcolor solid;
 }
+
 #forgot-password-text a:hover {
 	color: darkred;
 }
