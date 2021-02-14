@@ -54,7 +54,7 @@
 		<input class="form-control {% if posted %}{{'is-invalid' if last_name_error else 'is-valid'}}{% endif %}"
 			   type="text" name="last_name" id="last-name-field" placeholder="Last Name"
 			   value="{{ request.form.get('last_name', '') }}"
-				aria-describedby="last-name-feedback" required>
+			   aria-describedby="last-name-feedback" required>
 		<div id="last-name-feedback" class="invalid-feedback">
 			{{last_name_error}}
 		</div>
@@ -79,9 +79,9 @@
 		</div>
 	</div>
 
-	<div class="text-end">
-		<button class="btn btn-primary" type="submit" id="submit-button">Submit</button>
-	</div>
+	<a href="{{ url_for('auth.index') }}" id="login-text"><i class="fa fa-door-open"></i> Login</a>
+
+	<button class="btn btn-primary" id="submit-button" type="submit">Submit</button>
 
 </form>
 {% endblock %}

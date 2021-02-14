@@ -6,15 +6,6 @@
 	margin-bottom: 12px;
 }
 
-#forgot-password-text a {
-	color: red;
-	text-decoration: none currentcolor solid;
-}
-
-#forgot-password-text a:hover {
-	color: darkred;
-}
-
 #sign-up-text a {
 	color: #DDD;
 	text-decoration: none currentcolor solid;
@@ -22,6 +13,15 @@
 
 #sign-up-text a:hover {
 	color: #888;
+}
+
+#forgot-password-text a {
+	color: red;
+	text-decoration: none currentcolor solid;
+}
+
+#forgot-password-text a:hover {
+	color: darkred;
 }
 
 #submit-button {

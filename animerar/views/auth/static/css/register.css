@@ -17,9 +17,19 @@
 	margin-right: 30px;
 }
 
+#login-text {
+	color: #DDD;
+	text-decoration: none currentcolor solid;
+}
+
+#login-text:hover {
+	color: #888;
+}
+
 #submit-button {
 	background-color: #777;
 	border-color: #999;
+	float: right;
 }
 
 #submit-button:hover {
