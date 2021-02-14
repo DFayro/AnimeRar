@@ -16,10 +16,18 @@ def index():
 		email = request.form['email']
 		password = request.form['password']
 
-		error = "Login failed"
+		if not email:
+			error = "Enter a valid email address"
+		elif not password:
+			error = "Enter a password"
+		elif not User.get(email) or not User.get(email).password == password:
+			error = "Login failed"
+		else:
+			# Login
+			print("Logged in")
+			return redirect(url_for("home.index"))
 
-		if error:
-			return render_template("login.html", navbar=navbar, login_error=error)
+		return render_template("login.html", navbar=navbar, login_error=error)
 
 	return render_template("login.html", navbar=navbar)
 
@@ -77,8 +85,6 @@ def register():
 				if password_repeat != password:
 					errors['password_repeat_error'] = "Passwords do not match"
 					valid = False
-
-		print(request.form)
 
 		if valid:
 			new_user = User(

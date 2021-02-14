@@ -1,6 +1,30 @@
 from animerar.db.db_short import *
 
 
+class User(Model):
+	__tablename__ = "user"
+
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+
+	id = Column(Integer, primary_key=True, nullable=False)
+
+	email = Column(String(28))
+	display_name = Column(String(28))
+	first_name = Column(String(28))
+	last_name = Column(String(28))
+
+	password = Column(String(64))
+
+	@classmethod
+	def user_exists(cls, email):
+		return bool(cls.get(email))
+
+	@classmethod
+	def get(cls, email):
+		return cls.query.filter_by(email=email).first()
+
+
 class Anime(Model):
 	__tablename__ = "anime"
 
