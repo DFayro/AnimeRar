@@ -11,7 +11,6 @@ def index():
 
 	if request.method == "POST":
 
-		print(request)
 		email = request.form['email']
 		password = request.form['password']
 
