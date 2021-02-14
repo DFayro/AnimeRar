@@ -7,8 +7,8 @@ class User(Model, UserMixin):
 	__tablename__ = "user"
 
 	def __init__(self, *args, **kwargs):
-		Model.__init__(*args, **kwargs)
-		UserMixin.__init__(*args, **kwargs)
+		Model.__init__(self, *args, **kwargs)
+		UserMixin.__init__(self)
 
 	id = Column(Integer, primary_key=True, nullable=False)
 
