@@ -1,11 +1,14 @@
+from flask_login import UserMixin
+
 from animerar.db.db_short import *
 
 
-class User(Model):
+class User(Model, UserMixin):
 	__tablename__ = "user"
 
 	def __init__(self, *args, **kwargs):
-		super().__init__(*args, **kwargs)
+		Model.__init__(*args, **kwargs)
+		UserMixin.__init__(*args, **kwargs)
 
 	id = Column(Integer, primary_key=True, nullable=False)
 

@@ -2,7 +2,6 @@ from flask import Flask, render_template
 from werkzeug.exceptions import BadRequest
 
 import animerar.db
-from animerar.core import auth_handler
 
 SHARED_TEMPLATE_FOLDER = "views/sh_templates"
 SHARED_STATIC_FOLDER = "views/sh_static"
@@ -23,6 +22,7 @@ def init():
 	app.config['SECRET_KEY'] = "DonkeysWriteBadCode"
 
 	animerar.db.init_db(app)
+	from animerar.core import auth_handler
 	auth_handler.init(app)
 
 	app.register_error_handler(404, page_not_found)

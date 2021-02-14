@@ -1,3 +1,4 @@
+import flask_login
 from flask import Blueprint, redirect, render_template, request, url_for
 
 from animerar.core import NavBar, validation
@@ -12,7 +13,7 @@ def index():
 	navbar = NavBar.default_bar()
 
 	if request.method == "POST":
-
+		# Todo reduce db calls
 		email = request.form['email']
 		password = request.form['password']
 
@@ -24,7 +25,7 @@ def index():
 			error = "Login failed"
 		else:
 			# Login
-			print("Logged in")
+			flask_login.login_user(User.get(email))
 			return redirect(url_for("home.index"))
 
 		return render_template("login.html", navbar=navbar, login_error=error)

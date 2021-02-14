@@ -1,9 +1,11 @@
 from flask import Flask
 from flask_login import LoginManager
 
+from animerar.models import User
+
 
 def _load_user(id):
-	pass
+	return User.query.filter_by(id=id).first()
 
 
 def init(app: Flask):

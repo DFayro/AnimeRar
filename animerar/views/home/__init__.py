@@ -1,7 +1,7 @@
-from animerar.db.db_short import *
-from animerar.models import Anime
-from flask import Blueprint, render_template, url_for
+from flask import Blueprint, render_template
+
 from animerar.core import NavBar
+from animerar.models import Anime
 
 blueprint = Blueprint("home", __name__, template_folder="templates", static_folder="static")
 
