@@ -15,38 +15,6 @@
 	<!--Project-->
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
 
-	<script type="text/javascript">
-
-		function moveScroller() {
-			const $anchor = $("#banner");
-			const $scroller = $('#main-nav-bar');
-
-			const move = function () {
-				var st = $(window).scrollTop() - 120;
-				var ot = $anchor.offset().top;
-				if (st > ot) {
-					$scroller.css({
-						position: "fixed",
-						top: "0px",
-						width: "100%"
-					});
-				} else {
-					$scroller.css({
-						position: "relative",
-						top: ""
-					});
-				}
-			};
-
-			$(window).scroll(move);
-			move();
-		}
-
-		$(function () {
-			moveScroller();
-		});
-	</script>
-
 	<title>{% block title %}{% endblock %} - AnimeRar</title>
 
 	{% block head %} {% endblock %}
@@ -62,7 +30,7 @@
 </div>
 
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark shadow" id="main-nav-bar">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark shadow sticky-top" id="main-nav-bar">
 	<div class="container container-small">
 
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle"
