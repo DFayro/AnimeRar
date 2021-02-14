@@ -73,8 +73,9 @@
 		<div class="collapse navbar-collapse" id="navbarToggle">
 			<ul class="navbar-nav mr-auto">
 				{% for nav_el in navbar.elements %}
-				<li class="nav-item {{ 'active' if nav_el.active else '' }}">
-					<a class="nav-link" href="{{ nav_el.link }}">{{ nav_el.text }}</a>
+				<li class="nav-item">
+					<a class="nav-link {{ 'active' if nav_el.active else '' }}" href="{{ nav_el.link }}">{{ nav_el.text
+						}}</a>
 				</li>
 				{% endfor %}
 			</ul>
