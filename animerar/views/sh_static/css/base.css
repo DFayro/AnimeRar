@@ -71,7 +71,7 @@ body {
 	color: white;
 	margin-top: 40px;
 	margin-bottom: 60px;
-	width: 800px;
+	max-width: 800px;
 	border-radius: 10px;
 	background-color: #343a40;
 	border: 3px solid #222;
