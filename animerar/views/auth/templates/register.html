@@ -54,7 +54,7 @@
 		<input class="form-control {% if posted %}{{'is-invalid' if last_name_error else 'is-valid'}}{% endif %}"
 			   type="text" name="last_name" id="last-name-field" placeholder="Last Name"
 			   value="{{ request.form.get('last_name', '') }}"
-			   aria-describedby="last-name-feedback" required>
+				aria-describedby="last-name-feedback" required>
 		<div id="last-name-feedback" class="invalid-feedback">
 			{{last_name_error}}
 		</div>
@@ -71,8 +71,8 @@
 
 		<label class="sr-only" for="password-repeat-field"></label>
 		<span class="input-group-text"><i class="fa fa-lock"></i></span>
-		<input class="form-control {% if posted %}{{'is-invalid' if repeat_password_error else 'is-valid'}}{% endif %}"
-			   type="password" name="repeat_password" id="password-repeat-field"
+		<input class="form-control {% if posted %}{{'is-invalid' if password_repeat_error else 'is-valid'}}{% endif %}"
+			   id="password-repeat-field" name="password_repeat" type="password"
 			   placeholder="Repeat Password" required>
 		<div class="invalid-feedback">
 			{{password_repeat_error}}
