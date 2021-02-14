@@ -1,5 +1,17 @@
 #register-form {
-	width: 75%;
+	width: 100%;
+}
+
+@media (min-width: 576px) {
+	#register-form {
+		max-width: 75%;
+	}
+}
+
+@media (min-width: 992px) {
+	#register-form {
+		max-width: 65%;
+	}
 }
 
 #register-form .input-group {

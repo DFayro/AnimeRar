@@ -1,5 +1,17 @@
 #login-form {
-	width: 75%;
+	max-width: 100%;
+}
+
+@media (min-width: 576px) {
+	#login-form {
+		max-width: 75%;
+	}
+}
+
+@media (min-width: 992px) {
+	#login-form {
+		max-width: 65%;
+	}
 }
 
 #login-form .input-group {
