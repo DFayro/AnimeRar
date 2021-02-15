@@ -37,9 +37,10 @@ def build_app():
 	app.register_error_handler(BadRequest, bad_request)
 
 	# Collect and attach Blueprints
-	from animerar.views import home, auth
+	from animerar.views import home, auth, anime
 
 	app.register_blueprint(home.blueprint)
 	app.register_blueprint(auth.blueprint, url_prefix="/auth")
+	app.register_blueprint(anime.blueprint, url_prefix="/anime")
 
 	return app

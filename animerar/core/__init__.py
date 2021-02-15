@@ -25,7 +25,7 @@ class NavBar:
 		if not cls._default_bar:
 			cls._default_bar = NavBar(
 				cls.NavElement("Home", url_for("home.index")),
-				cls.NavElement("Anime", ""),
+				cls.NavElement("Anime", url_for("anime.index")),
 				cls.NavElement("Utaite", ""),
 				cls.NavElement("404", "Anywhere")
 			)
