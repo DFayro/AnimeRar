@@ -17,8 +17,9 @@ def index():
 
 	if request.method == "POST":
 		# Todo reduce db calls
-		email = request.form['email']
-		password = request.form['password']
+		email = request.form.get("email")
+		password = request.form.get("password")
+		remember_me = request.form.get("remember_me")
 
 		if not email:
 			error = "Enter a valid email address"
@@ -28,7 +29,7 @@ def index():
 			error = "Login failed"
 		else:
 			# Login
-			flask_login.login_user(User.get(email))
+			flask_login.login_user(User.get(email), remember=remember_me)
 			next = request.args.get("next")
 
 			return redirect(next or url_for("home.index"))
