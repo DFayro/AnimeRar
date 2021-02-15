@@ -15,7 +15,7 @@
 
 	<div class="input-group">
 		<label class="sr-only" for="email-field"></label>
-		<span class="input-group-text"><i class="fa fa-envelope"></i></span>
+		<span class="input-group-text"><i class="bi bi-envelope-open-fill"></i></span>
 		<input class="form-control {% if posted %}{{'is-invalid' if email_error else 'is-valid'}}{% endif %}"
 			   type="email" name="email" id="email-field" placeholder="E-mail"
 			   value="{{ request.form.get('email', '') }}" required>
@@ -27,7 +27,7 @@
 
 	<div class="input-group">
 		<label class="sr-only" for="display-name-field"></label>
-		<span class="input-group-text"><i class="fa fa-comment-dots"></i></span>
+		<span class="input-group-text"><i class="bi bi-person-square"></i></span>
 		<input class="form-control {% if posted %}{{'is-invalid' if display_name_error else 'is-valid'}}{% endif %}"
 			   type="text" name="display_name" id="display-name-field" placeholder="Display Name"
 			   value="{{ request.form.get('display_name', '') }}" required>
@@ -39,7 +39,7 @@
 
 	<div class="input-group">
 		<label class="sr-only" for="first-name-field"></label>
-		<span class="input-group-text"><i class="fa fa-user-ninja"></i></span>
+		<span class="input-group-text"><i class="bi bi-person-fill"></i></span>
 		<input class="form-control me-2 {% if posted %}{{'is-invalid' if display_name_error else 'is-valid'}}{% endif %}"
 			   type="text" name="first_name" id="first-name-field"
 			   placeholder="First Name"
@@ -50,7 +50,7 @@
 		</div>
 
 		<label class="sr-only" for="last-name-field"></label>
-		<span class="input-group-text"><i class="fa fa-user-friends"></i></span>
+		<span class="input-group-text"><i class="bi bi-people-fill"></i></span>
 		<input class="form-control {% if posted %}{{'is-invalid' if last_name_error else 'is-valid'}}{% endif %}"
 			   type="text" name="last_name" id="last-name-field" placeholder="Last Name"
 			   value="{{ request.form.get('last_name', '') }}"
@@ -62,7 +62,7 @@
 
 	<div class="input-group">
 		<label class="sr-only" for="password-field"></label>
-		<span class="input-group-text"><i class="fa fa-lock"></i></span>
+		<span class="input-group-text"><i class="bi bi-shield-lock-fill"></i></span>
 		<input class="form-control me-2 {% if posted %}{{'is-invalid' if password_error else 'is-valid'}}{% endif %}"
 			   type="password" name="password" id="password-field" placeholder="Password" required>
 		<div class="invalid-feedback">
@@ -70,7 +70,7 @@
 		</div>
 
 		<label class="sr-only" for="password-repeat-field"></label>
-		<span class="input-group-text"><i class="fa fa-lock"></i></span>
+		<span class="input-group-text"><i class="bi bi-shield-lock-fill"></i></span>
 		<input class="form-control {% if posted %}{{'is-invalid' if password_repeat_error else 'is-valid'}}{% endif %}"
 			   id="password-repeat-field" name="password_repeat" type="password"
 			   placeholder="Repeat Password" required>
