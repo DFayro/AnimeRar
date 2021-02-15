@@ -10,6 +10,9 @@ blueprint = Blueprint("auth", __name__, template_folder="templates", static_fold
 
 @blueprint.route("/", methods=['GET', 'POST'])
 def index():
+	if flask_login.current_user.is_authenticated:
+		return redirect(url_for("home.index"))
+
 	navbar = NavBar.default_bar()
 
 	if request.method == "POST":
@@ -26,7 +29,9 @@ def index():
 		else:
 			# Login
 			flask_login.login_user(User.get(email))
-			return redirect(url_for("home.index"))
+			next = request.args.get("next")
+
+			return redirect(next or url_for("home.index"))
 
 		return render_template("login.html", navbar=navbar, login_error=error)
 
@@ -35,6 +40,9 @@ def index():
 
 @blueprint.route("/register", methods=['GET', 'POST'])
 def register():
+	if flask_login.current_user.is_authenticated:
+		return redirect(url_for("home.index"))
+
 	navbar = NavBar.default_bar()
 
 	if request.method == "POST":
@@ -104,3 +112,11 @@ def register():
 		return render_template("register.html", navbar=navbar, posted=True, **errors)
 
 	return render_template("register.html", navbar=navbar)
+
+
+@blueprint.route("/logout")
+def logout():
+	if flask_login.current_user.is_authenticated:
+		flask_login.logout_user()
+
+	return redirect(url_for("home.index"))

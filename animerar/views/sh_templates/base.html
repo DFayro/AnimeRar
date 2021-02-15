@@ -55,7 +55,7 @@
 
 		<div id="account-status-bar" class="shadow text-center">
 			{% if current_user.is_authenticated %}
-			{{ current_user.display_name}}
+			<a href="{{ url_for('auth.logout') }}">{{ current_user.display_name}}</a>
 			{% else %}
 			<a href="{{ url_for('auth.index') }}">Login</a>
 			{% endif %}
