@@ -75,11 +75,10 @@ body {
 }
 
 #account-status-bar {
-	background-color: #777;
-	padding: 6px 24px;
 	font-size: 12pt;
-	border-radius: 8px 8px 8px 8px;
-	border: 2px solid #777;
+	padding: 3px 20px;
+	border-left: 2px solid #777;
+	border-right: 2px solid #777;
 }
 
 #account-status-bar a {
