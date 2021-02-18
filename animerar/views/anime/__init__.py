@@ -1,8 +1,10 @@
-from flask import Blueprint, abort, render_template, request
-from wtforms import SelectField, StringField, TextAreaField, validators, FileField
+from flask import Blueprint, abort, render_template, url_for
+from markupsafe import Markup
+from wtforms import FileField, SelectField, StringField, TextAreaField, validators
 
 from animerar.core import NavBar
 from animerar.core.form import InlineValidatedForm
+from animerar.db import db_inst as db
 from animerar.models.anime import Anime
 
 blueprint = Blueprint("anime", __name__, template_folder="templates", static_folder="static")
@@ -48,12 +50,12 @@ class AddAnimeForm(InlineValidatedForm):
 		validators=[]
 	)
 	premiered_season = SelectField('Select', choices=[
-		("spring", "Spring"),
-		("summer", "Summer"),
-		("autumn", "Autumn"),
-		("w	inter", "Winter")
+		("Spring", "Spring"),
+		("Summer", "Summer"),
+		("Autumn", "Autumn"),
+		("Winter", "Winter")
 	])
-	premiered_month = SelectField('Select', choices=[
+	premiered_year = SelectField('Select', choices=[
 		("2013", "2013"),
 		("2014", "2014"),
 		("2015", "2015"),
@@ -69,7 +71,19 @@ def add():
 	form = AddAnimeForm()
 	navbar = NavBar.default_bar()
 	if form.validate_on_submit():
-		print("Validated")
-		print(request.form)
+		new_anime = Anime(
+			title=form.title.data,
+			jp_title=form.jp_title.data,
+			en_title=form.en_title.data,
+			synopsis=form.synopsis.data,
+			premiered=f"{form.premiered_season.data} {form.premiered_year.data}"
+		)
+		db.session.add(new_anime)
+		db.session.commit()
+
+		form.is_submitted()
+		alert = Markup(
+			f"Added anime <b>{form.title.data}</b>. Go to <a href='{url_for('anime.page', anime_id=new_anime.id)}'>page</a>.")
+		return render_template("anime_add.html", navbar=navbar, form=form, success_alert=alert)
 
 	return render_template("anime_add.html", navbar=navbar, form=form)

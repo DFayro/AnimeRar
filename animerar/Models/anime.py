@@ -4,11 +4,15 @@ from animerar.db.db_short import *
 class Anime(Model):
 	__tablename__ = "anime"
 
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+
 	id = Column(Integer, primary_key=True, autoincrement=True)
 	title = Column(String(100), nullable=False)
+	jp_title = Column(String(100))
+	en_title = Column(String(100))
 	synopsis = Column(String(500))
 	premiered = Column(String(20))
-	voice_actors = relationship("VoiceActor")
 
 	comments = relationship('AnimePageComment')
 
