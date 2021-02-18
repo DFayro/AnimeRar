@@ -1,0 +1,49 @@
+table{
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	border: 2px solid #000000;
+}
+
+th {
+	color: black;
+	text-align: left;
+	border: 2px solid #000000;
+	padding: 10px;
+}
+
+td {
+	padding: 10px;
+	border: 2px solid #000000;
+	color: black;
+	text-align: left;
+}
+
+.titleimg {
+	padding: 0;
+}
+
+tr:nth-child(even) {
+	background-color: #b0adad;
+}
+
+
+.topnav {
+	border: 1px solid black;
+	float: right;
+	margin: 5px;
+}
+
+thead {
+	background-color: #0707b8;
+}
+
+.timg {
+	width: 55px;
+	margin-right: 10px;
+}
+
+tr:hover {
+	background: #d2d0d0;
+	padding: 10%;
+}
