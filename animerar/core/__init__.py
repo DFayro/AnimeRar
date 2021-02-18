@@ -1,6 +1,7 @@
 from flask import url_for
 
 
+
 class NavBar:
 	_default_bar = None
 

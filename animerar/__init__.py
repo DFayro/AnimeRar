@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from werkzeug.exceptions import BadRequest
+from werkzeug.exceptions import HTTPException
 
 import animerar.db
 
@@ -12,7 +12,7 @@ def page_not_found(e):
 	return render_template("404.html"), 404
 
 
-def bad_request(e):
+def general_error(e):
 	return render_template("bad_request.html")
 
 
@@ -34,7 +34,7 @@ def build_app():
 	auth_handler.init(app)
 
 	app.register_error_handler(404, page_not_found)
-	app.register_error_handler(BadRequest, bad_request)
+	app.register_error_handler(HTTPException, general_error)
 
 	# Collect and attach Blueprints
 	from animerar.views import home, auth, anime

@@ -1,0 +1,56 @@
+{% extends 'base_flat.html' %}
+
+{% block head %}
+	<link href="{{ url_for('.static', filename='css/anime_add.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}Anime{% endblock %}
+
+{% block content %}
+	<h1>Add anime</h1>
+	<form method="post" action="" style="max-width: 600px" novalidate>
+		{{ form.csrf_token }}
+
+		{{ form.cover_art.label }}
+		<div class="input-group">
+			<span class="input-group-text"><i class="bi bi-envelope-open-fill"></i></span>
+			{{ form.render('cover_art') }}
+		</div>
+
+		{{ form.title.label }}
+		<div class="input-group">
+			<span class="input-group-text"><i class="bi bi-envelope-open-fill"></i></span>
+			{{ form.render('title') }}
+		</div>
+
+		{{ form.jp_title.label }}
+		<div class="input-group">
+			<span class="input-group-text"><i class="bi bi-envelope-open-fill"></i></span>
+			{{ form.render('jp_title') }}
+		</div>
+
+		{{ form.en_title.label }}
+		<div class="input-group">
+			<span class="input-group-text"><i class="bi bi-envelope-open-fill"></i></span>
+			{{ form.render('en_title') }}
+		</div>
+
+		{{ form.synopsis.label }}
+		<div class="input-group">
+			<span class="input-group-text"><i class="bi bi-envelope-open-fill"></i></span>
+			{{ form.render('synopsis') }}
+		</div>
+
+		Premiered
+		<div class="input-group">
+			{{ form.render('premiered_season') }}
+
+			{{ form.render('premiered_month') }}
+		</div>
+
+
+
+		<button class="btn btn-primary btn-dark float-end" type="submit">Submit</button>
+	</form>
+
+{% endblock %}
