@@ -1,0 +1,50 @@
+{% extends 'base_flat.html' %}
+
+{% block head %}
+<link href="{{url_for('.static', filename='css/profile.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div id="user-info">
+	<div class="block">
+		<h2>{{ current_user.display_name }}</h2>
+
+		<table>
+			<tr>
+				<td>Email:</td>
+				<td>{{ current_user.email }}</td>
+			</tr>
+			<tr>
+				<td>First name:</td>
+				<td>{{ current_user.first_name }}</td>
+			</tr>
+			<tr>
+				<td>Last name:</td>
+				<td>{{ current_user.last_name }}</td>
+			</tr>
+		</table>
+	</div>
+	<div class="block">
+		<h2>Statistics</h2>
+
+		<table>
+			<tr>
+				<td>Anime's saved:</td>
+				<td>0</td>
+			</tr>
+		</table>
+	</div>
+
+	<div id="logout-button">
+		<a href="{{ url_for('auth.logout') }}"><i class="bi bi-box-arrow-in-right"></i></a>
+	</div>
+</div>
+
+
+<h5>Saved Anime</h5>
+<i>Animes added to your collection will be shown here.</i>
+<hr/>
+
+{% endblock %}
