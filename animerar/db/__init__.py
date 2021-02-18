@@ -10,6 +10,9 @@ def init_db(flask_app):
 
 	# Ensure schema is declared by importing each module containing them
 	from animerar import models
+	from animerar.models import anime
+	models: models
+	anime: anime
 
 	# Actually create the schema
 	db_inst.create_all()

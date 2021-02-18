@@ -1,0 +1,77 @@
+{% extends 'base_flat.html' %}
+
+{% block head %}
+<link href="{{url_for('.static', filename='css/anime_page.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}Anime{% endblock %}
+
+{% block content %}
+<div id="header">
+	<h1>{{ anime.name }}</h1>
+	<h2>KonoSuba: God's Blessing on This Wonderful World!</h2>
+</div>
+
+<div id="body-section">
+	<div id="info-bar">
+
+		<div id="info-bar__cover-image">
+			<img alt="cover-image" src="{{ url_for('static', filename='img/boxart/73199.jpg') }}"/>
+		</div>
+
+		<div id="info-bar__content">
+
+			<h5>Information</h5>
+			<p>
+				<b>Producers:</b> Bones<br/>
+				<b>Episodes:</b> 12<br/>
+				<b>Premiered:</b> Spring 2012<br/>
+			</p>
+
+			<h5>Titles</h5>
+			<p>
+				<b>日本:</b> この素晴らしい世界に祝福を！<br/>
+				<b>English:</b> KonoSuba: God's Blessing on This Wonderful World!<br/>
+				<b>Synonym:</b> Give Blessings to This Wonderful World!<br/>
+			</p>
+
+		</div>
+	</div>
+	<div>
+		<h5>Synopsis</h5>
+		<p>
+			After dying a laughable and pathetic death on his way back from buying a game, high school student and
+			recluse
+			Kazuma Satou finds himself sitting before a beautiful but obnoxious goddess named Aqua. She provides the
+			NEET
+			with two options: continue on to heaven or reincarnate in every gamer's dream—a real fantasy world! Choosing
+			to
+			start a new life, Kazuma is quickly tasked with defeating a Demon King who is terrorizing villages. But
+			before
+			he goes, he can choose one item of any kind to aid him in his quest, and the future hero selects Aqua. But
+			Kazuma has made a grave mistake—Aqua is completely useless!
+
+			Unfortunately, their troubles don't end here; it turns out that living in such a world is far different from
+			how
+			it plays out in a game. Instead of going on a thrilling adventure, the duo must first work to pay for their
+			living expenses. Indeed, their misfortunes have only just begun!
+		</p>
+		<hr/>
+
+		<h5>Characters</h5>
+		<p>
+			Kazuma<br/>
+			Aqua<br/>
+			Megumin<br/>
+			Darkness<br/>
+		</p>
+		<hr/>
+
+	</div>
+</div>
+<div id="comments">
+	<h4>Comments</h4>
+	Be the first to add a comment!
+	<hr>
+</div>
+{% endblock %}

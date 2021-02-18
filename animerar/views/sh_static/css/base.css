@@ -13,6 +13,10 @@ body {
 	font-family: "Noto Sans", Arial, sans-serif;
 }
 
+h1, h2, h3, h4, h5 {
+	font-weight: bold;
+}
+
 .container-small {
 	width: 100%;
 }
@@ -48,14 +52,15 @@ body {
 }
 
 #content-flat {
-	background-color: #777777;
+	background-color: #666;
 	padding: 22px 60px 50px 32px;
-	color: white;
+	color: #F4F1EE;
 	min-height: 600px;
 	margin-bottom: 60px;
 	border: 3px solid #222;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
+	overflow: auto;
 }
 
 
@@ -68,6 +73,7 @@ body {
 	background-color: #343a40;
 	border: 3px solid #222;
 	padding: 36px 48px 36px 48px;
+	overflow: auto;
 }
 
 #main-nav-bar {
