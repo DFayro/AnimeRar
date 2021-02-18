@@ -62,7 +62,7 @@
 
 #info-bar__cover-image {
 	background-color: #343a40;
-	border-bottom: 2px dashed #AAA;
+	border-bottom: 2px solid #AAA;
 	margin-bottom: 12px;
 }
 
