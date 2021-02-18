@@ -5,9 +5,12 @@ class Anime(Model):
 	__tablename__ = "anime"
 
 	id = Column(Integer, primary_key=True, autoincrement=True)
-
-	name = Column(String(100))
+	title = Column(String(100), nullable=False)
+	synopsis = Column(String(500))
+	premiered = Column(String(20))
 	voice_actors = relationship("VoiceActor")
+
+	comments = relationship('AnimePageComment')
 
 	@classmethod
 	def get(cls, *_, **kwargs):
@@ -16,6 +19,16 @@ class Anime(Model):
 	@classmethod
 	def get_all(cls, *_, **kwargs):
 		return cls.query.filter_by(**kwargs).all()
+
+
+class AnimePageComment(Model):
+
+	__tablename__ = "anime_page_comment"
+
+	id = Column(Integer, primary_key=True, autoincrement=True)
+	anime = Column(Integer, ForeignKey('anime.id'))
+	comment_text = Column(String(100))
+	comment_author = Column(Integer, ForeignKey('user.id'))
 
 
 class VoiceActor(Model):
