@@ -27,6 +27,7 @@
 	float: left;
 	max-width: 220px;
 	overflow: auto;
+	position: relative;
 }
 
 @media (max-width: 768px) {
@@ -41,6 +42,22 @@
 	#header h2 {
 		font-size: 10pt;
 	}
+}
+
+#info-bar__add-anime-button {
+	padding: 0 5px 5px;
+	background-color: #333;
+	position: absolute;
+	right: 12px;
+	top: 12px;
+	color: white;
+	border-radius: 4px;
+	font-size: 14pt;
+	border: 1px solid white;
+}
+
+#info-bar__add-anime-button:hover {
+	background-color: #444;
 }
 
 #info-bar__cover-image {

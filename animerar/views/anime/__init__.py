@@ -1,5 +1,4 @@
 from flask import Blueprint, abort, render_template
-from flask_login import login_required
 
 from animerar.core import NavBar
 from animerar.models.anime import Anime
@@ -8,7 +7,6 @@ blueprint = Blueprint("anime", __name__, template_folder="templates", static_fol
 
 
 @blueprint.route("/")
-@login_required
 def index():
 	navbar = NavBar.default_bar(active_page="Anime")
 	return render_template("anime_front.html", navbar=navbar)

@@ -15,6 +15,9 @@
 <div id="body-section">
 	<div id="info-bar">
 
+		{% if current_user.is_authenticated %}
+		<a href="#" id="info-bar__add-anime-button"><i class="bi {{'bi-heart' if not liked else 'bi-heart-fill'}}"></i></a>
+		{% endif %}
 		<div id="info-bar__cover-image">
 			<img alt="cover-image" src="{{ url_for('static', filename='img/boxart/73199.jpg') }}"/>
 		</div>
@@ -30,7 +33,7 @@
 
 			<h5>Titles</h5>
 			<p>
-				<b>日本:</b> この素晴らしい世界に祝福を！<br/>
+				<b>日本:</b> この素晴らしい世界に祝福を<br/>
 				<b>English:</b> KonoSuba: God's Blessing on This Wonderful World!<br/>
 				<b>Synonym:</b> Give Blessings to This Wonderful World!<br/>
 			</p>
