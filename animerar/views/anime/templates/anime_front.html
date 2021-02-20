@@ -1,38 +1,63 @@
 {% extends 'base_flat.html' %}
 
 {% block head %}
-<link href="{{url_for('.static', filename='css/anime_front.css')}}" rel="stylesheet">
+	<link href="{{ url_for('.static', filename='css/anime_front.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block title %}Anime{% endblock %}
 
 {% block content %}
-<h1>Anime</h1>
-<div class="topnav">
-	<input type="text" placeholder="Search...">
-</div>
-<table>
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Episodes</th>
-        <th>Studio</th>
-    </tr>
-    </thead>
-    <tr>
-        <td class="titleimg"><img class="timg" src="{{ url_for('static', filename='img/boxart/trend-6.jpg')}}">Sword Art Online</td>
-        <td>25</td>
-        <td>A-1 Pictures</td>
-    </tr>
-    <tr>
-        <td class="titleimg"><img class="timg" src="{{ url_for('static', filename='img/boxart/recent-6.jpg')}}">Demon Slayer</td>
-        <td>26</td>
-        <td>ufotable</td>
-    </tr>
-    <tr>
-        <td class="titleimg"><img class="timg" src="{{ url_for('static', filename='img/boxart/recent-3.jpg')}}">Dr. Stone</td>
-        <td>24</td>
-        <td>TMS Entertainment</td>
-    </tr>
-</table>
+	<h1>Anime Index</h1>
+	<div class="table-responsive">
+		<table id="anime-table" class="table">
+			<tr>
+				<th>Title</th>
+				<th>Premiered</th>
+			</tr>
+			{% for anime in animes.items %}
+				<tr>
+					<td>
+						<a href="{{ url_for('anime.page', anime_id=anime.id) }}">
+							<img id="anime-table__cover_art" src="{{ anime.cover_art_src() }}" alt="cover-art">
+							{{ anime.title }}
+						</a>
+
+					</td>
+					<td>
+						{{ anime.premiered }}
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+	<div id="pagination-box">
+		<a href="{{ url_for('anime.index', p=animes.prev_num) }}"
+		   class="btn btn-dark {{ 'disabled' if animes.page == 1 }}">
+			&laquo;
+		</a>
+
+		{% for page in animes.iter_pages(left_edge=2, left_current=2, right_current=3, right_edge=2) %}
+
+			{% if page %}
+				{% if page != animes.page %}
+					<a href="{{ url_for('anime.index', p=page) }}">{{ page }}</a>
+				{% else %}
+					<strong>{{ page }}</strong>
+				{% endif %}
+			{% else %}
+				<span class=ellipsis>…</span>
+			{% endif %}
+
+		{% endfor %}
+
+		<a href="{{ url_for('anime.index', p=animes.next_num) }}"
+		   class="btn btn-dark {{ 'disabled' if animes.page == animes.pages }}">
+			&raquo;
+		</a>
+	</div>
+
+
+
+
+
 {% endblock %}

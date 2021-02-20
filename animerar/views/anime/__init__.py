@@ -1,4 +1,4 @@
-from flask import Blueprint, abort, render_template, url_for
+from flask import Blueprint, abort, render_template, request, url_for
 from markupsafe import Markup
 from wtforms import FileField, IntegerField, SelectField, StringField, TextAreaField, validators
 
@@ -13,7 +13,12 @@ blueprint = Blueprint("anime", __name__, template_folder="templates", static_fol
 @blueprint.route("/")
 def index():
 	navbar = NavBar.default_bar(active_page="Anime")
-	return render_template("anime_front.html", navbar=navbar)
+
+	current_page = request.args.get('p', 1, type=int)
+
+	animes = Anime.query.paginate(page=current_page, per_page=6, error_out=True)
+
+	return render_template("anime_front.html", navbar=navbar, animes=animes)
 
 
 @blueprint.route("/<int:anime_id>")
@@ -72,8 +77,10 @@ class AddAnimeForm(InlineValidatedForm):
 def add():
 	form = AddAnimeForm()
 	navbar = NavBar.default_bar()
+
 	if form.validate_on_submit():
 		img_data: bytes = form.cover_art.data.stream.read()
+		print(img_data)
 
 		# TODO: Ensure img_data is of image type through validator
 
