@@ -25,7 +25,7 @@ def index():
 			error = "Enter a valid email address"
 		elif not password:
 			error = "Enter a password"
-		elif not User.get(email) or not User.get(email).password == password:
+		elif not User.get(email) or not User.get(email).check_password(password):
 			error = "Login failed"
 		else:
 			# Login
@@ -102,7 +102,7 @@ def register():
 				display_name=display_name,
 				first_name=first_name,
 				last_name=last_name,
-				password=password
+				password=User.secure_password(password)
 			)
 
 			db.session.add(new_user)

@@ -11,54 +11,56 @@
 	{% if success_alert %}
 		<div class="alert alert-success">{{ success_alert }}</div>
 	{% endif %}
+	<div id="add-anime-box">
+		<form method="post" action="" enctype="multipart/form-data" novalidate>
+			{{ form.csrf_token }}
 
-	<form method="post" action="" enctype="multipart/form-data" style="max-width: 600px" novalidate>
-		{{ form.csrf_token }}
+			{{ form.cover_art.label }}
+			<div class="input-group">
+				<span class="input-group-text"><i class="bi bi-card-image"></i></span>
+				{{ form.render('cover_art') }}
+			</div>
 
-		{{ form.cover_art.label }}
-		<div class="input-group">
-			<span class="input-group-text"><i class="bi bi-envelope-open-fill"></i></span>
-			{{ form.render('cover_art') }}
-		</div>
+			{{ form.title.label }}
+			<div class="input-group">
+				<span class="input-group-text"><i class="bi bi-tag-fill"></i></span>
+				{{ form.render('title') }}
+			</div>
 
-		{{ form.title.label }}
-		<div class="input-group">
-			<span class="input-group-text"><i class="bi bi-envelope-open-fill"></i></span>
-			{{ form.render('title') }}
-		</div>
+			{{ form.jp_title.label }}
+			<div class="input-group">
+				<span class="input-group-text"><i class="bi bi-tags-fill"></i></span>
+				{{ form.render('jp_title') }}
+			</div>
 
-		{{ form.jp_title.label }}
-		<div class="input-group">
-			<span class="input-group-text"><i class="bi bi-envelope-open-fill"></i></span>
-			{{ form.render('jp_title') }}
-		</div>
+			{{ form.en_title.label }}
+			<div class="input-group">
+				<span class="input-group-text"><i class="bi bi-tags-fill"></i></span>
+				{{ form.render('en_title') }}
+			</div>
 
-		{{ form.en_title.label }}
-		<div class="input-group">
-			<span class="input-group-text"><i class="bi bi-envelope-open-fill"></i></span>
-			{{ form.render('en_title') }}
-		</div>
+			{{ form.episodes.label }}
+			<div class="input-group">
+				<span class="input-group-text"><i class="bi bi-stack"></i></span>
+				{{ form.render('episodes') }}
+			</div>
 
-		{{ form.episodes.label }}
-		<div class="input-group">
-			<span class="input-group-text"><i class="bi bi-envelope-open-fill"></i></span>
-			{{ form.render('episodes') }}
-		</div>
+			{{ form.synopsis.label }}
+			<div class="input-group">
+				<span class="input-group-text"><i class="bi bi-info-square-fill"></i></span>
+				{{ form.render('synopsis') }}
+			</div>
 
-		{{ form.synopsis.label }}
-		<div class="input-group">
-			<span class="input-group-text"><i class="bi bi-envelope-open-fill"></i></span>
-			{{ form.render('synopsis') }}
-		</div>
+			Premiered
+			<div class="input-group">
+				<span class="input-group-text"><i class="bi bi- bi-calendar-date-fill"></i></span>
+				{{ form.render('premiered_season') }}
 
-		Premiered
-		<div class="input-group">
-			{{ form.render('premiered_season') }}
+				{{ form.render('premiered_year') }}
+			</div>
 
-			{{ form.render('premiered_year') }}
-		</div>
-
-		<button class="btn btn-primary btn-dark float-end" type="submit">Submit</button>
-	</form>
+			<button class="btn btn-primary btn-dark" type="submit">Submit</button>
+		</form>
+	</div>
 
 {% endblock %}

@@ -20,14 +20,13 @@ h1, h2, h3, h4, h5 {
 }
 
 a {
-	color: #A99;
+	color: #BBB;
 	text-decoration: none;
 }
 
 a:hover {
 	color: #FFFFFF;
 	font-weight: bold;
-	text-decoration: underline;
 }
 
 .container-small {
@@ -85,6 +84,13 @@ a:hover {
 	border: 3px solid #222;
 	padding: 36px 48px 36px 48px;
 	overflow: auto;
+}
+
+@media (max-width: 576px) {
+	#content-flat {
+		padding: 22px 22px 50px 16px;
+
+	}
 }
 
 #main-nav-bar {

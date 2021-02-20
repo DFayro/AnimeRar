@@ -1,0 +1,8 @@
+#add-anime-box {
+	max-width: 550px;
+}
+
+#add-anime-box button {
+	float: right;
+	margin-top: 20px;
+}

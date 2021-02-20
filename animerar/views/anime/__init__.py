@@ -17,7 +17,7 @@ def index():
 
 	current_page = request.args.get('p', 1, type=int)
 
-	animes = Anime.query.paginate(page=current_page, per_page=6, error_out=True)
+	animes = Anime.query.paginate(page=current_page, per_page=10, error_out=True)
 
 	return render_template("anime_front.html", navbar=navbar, animes=animes)
 
@@ -35,11 +35,13 @@ def page(anime_id):
 
 class AddAnimeForm(InlineValidatedForm):
 	cover_art = FileField(
-		render_kw={'accept': '.jpg,.png, application/vnd.sealedmedia.softseal.jpg,vnd.sealed.png'})
+		render_kw={'accept': '.jpg,.png, application/vnd.sealedmedia.softseal.jpg,vnd.sealed.png'},
+		validators=[validators.DataRequired("Please select a cover picture.")]
+	)
 	title = StringField(
 		'Title',
 		render_kw={"placeholder": "Title"},
-		validators=[validators.DataRequired(message="Every Anime needs a title"), validators.Length(min=4, max=32)]
+		validators=[validators.DataRequired(message="Every Anime needs a title."), validators.Length(min=4, max=32)]
 	)
 	jp_title = StringField(
 		'Japanese Title',
@@ -56,22 +58,22 @@ class AddAnimeForm(InlineValidatedForm):
 		render_kw={"placeholder": "Synopsis..."},
 		validators=[]
 	)
-	episodes = IntegerField('Episodes', validators=[validators.NumberRange(min=1, max=999)])
+	episodes = IntegerField(
+		'Episodes',
+		validators=[validators.NumberRange(min=1, max=999)],
+		render_kw={"placeholder": "Amount of episodes.."}
+	)
 	premiered_season = SelectField('Select', choices=[
 		("Spring", "Spring"),
 		("Summer", "Summer"),
 		("Autumn", "Autumn"),
 		("Winter", "Winter")
 	])
-	premiered_year = SelectField('Select', choices=[
-		("2013", "2013"),
-		("2014", "2014"),
-		("2015", "2015"),
-		("2016", "2016"),
-		("2017", "2017"),
-		("2018", "2018"),
-		("2019", "2019"),
-	])
+	premiered_year = IntegerField(
+		'',
+		validators=[validators.NumberRange(min=1990, max=2021, message="Enter a year between 1990 and 2021")],
+		render_kw={"placeholder": "Year"}
+	)
 
 
 @blueprint.route("/add", methods=['GET', 'POST'])
@@ -82,7 +84,6 @@ def add():
 
 	if form.validate_on_submit():
 		img_data: bytes = form.cover_art.data.stream.read()
-		print(img_data)
 
 		# TODO: Ensure img_data is of image type through validator
 

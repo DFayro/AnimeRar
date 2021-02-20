@@ -1,4 +1,5 @@
 from flask_login import UserMixin
+from werkzeug import security
 
 from animerar.db.db_short import *
 
@@ -26,3 +27,10 @@ class User(Model, UserMixin):
 	@classmethod
 	def get(cls, email):
 		return cls.query.filter_by(email=email).first()
+
+	@staticmethod
+	def secure_password(password: str):
+		return security.generate_password_hash(password)
+
+	def check_password(self, password: str):
+		return security.check_password_hash(self.password, password)
