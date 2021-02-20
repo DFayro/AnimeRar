@@ -8,9 +8,22 @@
 
 {% block content %}
 	{% if current_user.is_authenticated %}
-	<a href="{{ url_for('anime.add') }}" class="btn btn-dark float-end">Add</a>
+		<a href="{{ url_for('anime.add') }}" class="btn btn-dark float-end">Add</a>
 	{% endif %}
 	<h1>Anime Index</h1>
+	<div id="search-box">
+		<form action="" method="get" class="mb-3">
+			<div class="input-group">
+				<span class="input-group-text btn-dark"><i class="bi bi-search"></i></span>
+				<input name="search" type="text" placeholder="Search.." class="form-control"
+					   value="{{ request.args.get('search', '') }}">
+				<button class="btn btn-dark">Search</button>
+			</div>
+		</form>
+	</div>
+
+	{% if animes.pages %}
+
 	<div class="table-responsive">
 		<table id="anime-table" class="table">
 			<tr>
@@ -58,6 +71,11 @@
 			&raquo;
 		</a>
 	</div>
+
+	{% else %}
+		<h3>No Anime's found..</h3>
+		<img src="{{ url_for('static', filename='img/not_found.png') }}" style="width: 200px; height: auto;" alt="not_found">
+	{% endif %}
 
 
 

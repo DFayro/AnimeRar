@@ -11,13 +11,19 @@ from animerar.models.anime import Anime
 blueprint = Blueprint("anime", __name__, template_folder="templates", static_folder="static")
 
 
-@blueprint.route("/")
+@blueprint.route("/", methods=['GET', 'POST'])
 def index():
 	navbar = NavBar.default_bar(active_page="Anime")
 
 	current_page = request.args.get('p', 1, type=int)
 
-	animes = Anime.query.paginate(page=current_page, per_page=10, error_out=True)
+	if request.args.get('search'):
+		# Straight from the form into the query, what can go wrong..
+		query = Anime.query.filter(Anime.title.like(f"%{request.args['search']}%"))
+	else:
+		query = Anime.query
+
+	animes = query.paginate(page=current_page, per_page=10, error_out=True)
 
 	return render_template("anime_front.html", navbar=navbar, animes=animes)
 
