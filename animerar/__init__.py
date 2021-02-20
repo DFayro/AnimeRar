@@ -20,6 +20,7 @@ def build_app():
 	app = Flask(__name__, template_folder=SHARED_TEMPLATE_FOLDER, static_folder=SHARED_STATIC_FOLDER)
 	app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
 	app.config['SECRET_KEY'] = "DonkeysWriteBadCode"
+	app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 	# ###############################################################################################################
 	# Generally, inline import statements are to be avoided. However in

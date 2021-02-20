@@ -16,5 +16,4 @@ def init_db(flask_app):
 
 	# Actually create the schema
 	db_inst.create_all()
-
 	print("DB Initialized", db_inst)
