@@ -1,3 +1,7 @@
+import base64
+
+from flask import url_for
+
 from animerar.db.db_short import *
 
 
@@ -14,6 +18,8 @@ class Anime(Model):
 	synopsis = Column(String(500))
 	premiered = Column(String(20))
 
+	cover_art = Column(BLOB())
+
 	comments = relationship('AnimePageComment')
 
 	@classmethod
@@ -24,9 +30,14 @@ class Anime(Model):
 	def get_all(cls, *_, **kwargs):
 		return cls.query.filter_by(**kwargs).all()
 
+	def cover_art_src(self):
+		if self.cover_art:
+			return "data:;base64," + base64.b64encode(self.cover_art).decode('ascii')
+		else:
+			return url_for('.static', filename='img/default_cover_art.jpg')
+
 
 class AnimePageComment(Model):
-
 	__tablename__ = "anime_page_comment"
 
 	id = Column(Integer, primary_key=True, autoincrement=True)

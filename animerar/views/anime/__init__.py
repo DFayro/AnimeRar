@@ -1,6 +1,6 @@
 from flask import Blueprint, abort, render_template, url_for
 from markupsafe import Markup
-from wtforms import FileField, SelectField, StringField, TextAreaField, validators
+from wtforms import FileField, IntegerField, SelectField, StringField, TextAreaField, validators
 
 from animerar.core import NavBar
 from animerar.core.form import InlineValidatedForm
@@ -28,7 +28,8 @@ def page(anime_id):
 
 
 class AddAnimeForm(InlineValidatedForm):
-	cover_art = FileField()
+	cover_art = FileField(
+		render_kw={'accept': '.jpg,.png, application/vnd.sealedmedia.softseal.jpg,vnd.sealed.png'})
 	title = StringField(
 		'Title',
 		render_kw={"placeholder": "Title"},
@@ -49,6 +50,7 @@ class AddAnimeForm(InlineValidatedForm):
 		render_kw={"placeholder": "Synopsis..."},
 		validators=[]
 	)
+	episodes = IntegerField('Episodes', validators=[validators.NumberRange(min=1, max=999)])
 	premiered_season = SelectField('Select', choices=[
 		("Spring", "Spring"),
 		("Summer", "Summer"),
@@ -71,17 +73,22 @@ def add():
 	form = AddAnimeForm()
 	navbar = NavBar.default_bar()
 	if form.validate_on_submit():
+		img_data: bytes = form.cover_art.data.stream.read()
+
+		# TODO: Ensure img_data is of image type through validator
+
 		new_anime = Anime(
 			title=form.title.data,
 			jp_title=form.jp_title.data,
 			en_title=form.en_title.data,
 			synopsis=form.synopsis.data,
-			premiered=f"{form.premiered_season.data} {form.premiered_year.data}"
+			premiered=f"{form.premiered_season.data} {form.premiered_year.data}",
+			cover_art=img_data
 		)
+
 		db.session.add(new_anime)
 		db.session.commit()
 
-		form.is_submitted()
 		alert = Markup(
 			f"Added anime <b>{form.title.data}</b>. Go to <a href='{url_for('anime.page', anime_id=new_anime.id)}'>page</a>.")
 		return render_template("anime_add.html", navbar=navbar, form=form, success_alert=alert)
