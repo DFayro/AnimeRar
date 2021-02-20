@@ -7,6 +7,9 @@
 {% block title %}Anime{% endblock %}
 
 {% block content %}
+	{% if current_user.is_authenticated %}
+	<a href="{{ url_for('anime.add') }}" class="btn btn-dark float-end">Add</a>
+	{% endif %}
 	<h1>Anime Index</h1>
 	<div class="table-responsive">
 		<table id="anime-table" class="table">

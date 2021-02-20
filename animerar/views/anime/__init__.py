@@ -1,4 +1,5 @@
 from flask import Blueprint, abort, render_template, request, url_for
+from flask_login import login_required
 from markupsafe import Markup
 from wtforms import FileField, IntegerField, SelectField, StringField, TextAreaField, validators
 
@@ -74,6 +75,7 @@ class AddAnimeForm(InlineValidatedForm):
 
 
 @blueprint.route("/add", methods=['GET', 'POST'])
+@login_required
 def add():
 	form = AddAnimeForm()
 	navbar = NavBar.default_bar()
