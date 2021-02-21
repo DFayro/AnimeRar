@@ -1,5 +1,5 @@
-from flask import Blueprint, abort, render_template, request, url_for
-from flask_login import login_required
+from flask import Blueprint, abort, redirect, render_template, request, url_for
+from flask_login import current_user, login_required
 from markupsafe import Markup
 from wtforms import FileField, IntegerField, SelectField, StringField, TextAreaField, validators
 
@@ -35,8 +35,44 @@ def page(anime_id):
 	if not anime:
 		abort(404)
 
+	is_liked = False
+
+	if current_user.is_authenticated:
+		if anime in current_user.collected_anime:
+			is_liked = True
+
 	navbar = NavBar.default_bar()
-	return render_template("anime_page.html", navbar=navbar, anime=anime)
+	return render_template("anime_page.html", navbar=navbar, anime=anime, liked=is_liked)
+
+
+@blueprint.route("/<int:anime_id>/add")
+@login_required
+def user_collect(anime_id):
+	anime = Anime.get(id=anime_id)
+
+	if not anime:
+		abort(404)
+
+	current_user.collected_anime.append(anime)
+	db.session.commit()
+
+	return redirect(url_for('anime.page', anime_id=anime_id))
+
+
+@blueprint.route("/<int:anime_id>/remove")
+@login_required
+def user_remove(anime_id):
+	anime = Anime.get(id=anime_id)
+
+	if not anime:
+		abort(404)
+
+	if anime in current_user.collected_anime:
+		current_user.collected_anime.remove(anime)
+
+	db.session.commit()
+
+	return redirect(url_for('anime.page', anime_id=anime_id))
 
 
 class AddAnimeForm(InlineValidatedForm):

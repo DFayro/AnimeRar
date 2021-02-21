@@ -3,6 +3,13 @@ from werkzeug import security
 
 from animerar.db.db_short import *
 
+collected_anime = Table(
+	'collected_anime',
+	metadata,
+	Column('user.id', Integer, ForeignKey('user.id')),
+	Column('anime.id', Integer, ForeignKey('anime.id'))
+)
+
 
 class User(Model, UserMixin):
 	__tablename__ = "user"
@@ -17,6 +24,8 @@ class User(Model, UserMixin):
 	display_name = Column(String(28))
 	first_name = Column(String(28))
 	last_name = Column(String(28))
+
+	collected_anime = relationship('Anime', secondary=collected_anime)
 
 	password = Column(String(64))
 

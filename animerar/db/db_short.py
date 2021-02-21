@@ -6,9 +6,11 @@ from animerar.db import db_inst
 session = db_inst.session
 
 Model = db_inst.Model
+metadata = Model.metadata
 
 relationship = db_inst.relationship
 
+Table = db_inst.Table
 Column = db_inst.Column
 
 ForeignKey = db_inst.ForeignKey

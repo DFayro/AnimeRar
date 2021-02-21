@@ -2,6 +2,7 @@
 
 {% block head %}
 	<link href="{{ url_for('.static', filename='css/anime_front.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', filename='css/util.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block title %}Anime{% endblock %}
@@ -24,27 +25,27 @@
 
 	{% if animes.pages %}
 
-	<div class="table-responsive">
-		<table id="anime-table" class="table">
-			<tr>
-				<th>Title</th>
-				<th>Premiered</th>
-			</tr>
-			{% for anime in animes.items %}
+		<div class="table-responsive">
+			<table class="table b-table">
 				<tr>
-					<td>
-						<a href="{{ url_for('anime.page', anime_id=anime.id) }}">
-							<img id="anime-table__cover_art" src="{{ anime.cover_art_src() }}" alt="cover-art">
-							{{ anime.title }}
-						</a>
-
-					</td>
-					<td>
-						{{ anime.premiered }}
-					</td>
+					<th>Title</th>
+					<th>Premiered</th>
 				</tr>
-			{% endfor %}
-		</table>
+				{% for anime in animes.items %}
+					<tr>
+						<td>
+							<a href="{{ url_for('anime.page', anime_id=anime.id) }}">
+								<img class="b-table__cover_art" src="{{ anime.cover_art_src() }}" alt="cover-art">
+								{{ anime.title }}
+							</a>
+
+						</td>
+						<td>
+							{{ anime.premiered }}
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
 	</div>
 	<div id="pagination-box">
 		<a href="{{ url_for('anime.index', p=animes.prev_num) }}"

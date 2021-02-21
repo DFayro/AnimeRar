@@ -34,7 +34,7 @@ class Anime(Model):
 		if self.cover_art:
 			return "data:;base64," + base64.b64encode(self.cover_art).decode('ascii')
 		else:
-			return url_for('.static', filename='img/default_cover_art.jpg')
+			return url_for('anime.static', filename='img/default_cover_art.jpg')
 
 
 class AnimePageComment(Model):

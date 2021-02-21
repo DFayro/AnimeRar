@@ -1,46 +1,69 @@
 {% extends 'base_flat.html' %}
 
 {% block head %}
-<link href="{{url_for('.static', filename='css/profile.css')}}" rel="stylesheet">
+	<link href="{{ url_for('.static', filename='css/profile.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', filename='css/util.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<div id="user-info">
-	<div class="block">
-		<h2>{{ current_user.display_name }}</h2>
+	<div id="user-info">
+		<div class="block">
+			<h2>{{ current_user.display_name }}</h2>
 
-		<table>
+			<table>
+				<tr>
+					<td>Email:</td>
+					<td>{{ current_user.email }}</td>
+				</tr>
+				<tr>
+					<td>Name:</td>
+					<td>{{ current_user.first_name }} {{ current_user.last_name }}</td>
+				</tr>
+			</table>
+		</div>
+		<div class="block">
+			<h2>Statistics</h2>
+
+			<table>
+				<tr>
+					<td>Anime's saved:</td>
+					<td>{{ anime_collected_count }}</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="logout-button">
+			<a href="{{ url_for('auth.logout') }}"><i class="bi bi-box-arrow-in-right"></i></a>
+		</div>
+	</div>
+
+
+	<h5>Recently saved</h5>
+
+	{% if collected_anime %}
+		<table class="b-table">
 			<tr>
-				<td>Email:</td>
-				<td>{{ current_user.email }}</td>
+				<th>Title</th>
 			</tr>
-			<tr>
-				<td>Name:</td>
-				<td>{{ current_user.first_name }} {{ current_user.last_name }}</td>
-			</tr>
+			{% for anime in collected_anime %}
+				<tr>
+					<td>
+						<a href="{{ url_for('anime.page', anime_id=anime.id) }}">
+							<img class="b-table__cover_art" src="{{ anime.cover_art_src() }}" alt="cover-art">
+							{{ anime.title }}
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
 		</table>
-	</div>
-	<div class="block">
-		<h2>Statistics</h2>
-
-		<table>
-			<tr>
-				<td>Anime's saved:</td>
-				<td>0</td>
-			</tr>
-		</table>
-	</div>
-
-	<div id="logout-button">
-		<a href="{{ url_for('auth.logout') }}"><i class="bi bi-box-arrow-in-right"></i></a>
-	</div>
-</div>
-
-
-<h5>Saved Anime</h5>
-<i>Animes added to your collection will be shown here.</i>
-<hr/>
+		{% if anime_collected_count > 5 %}
+			<a class="btn btn-dark mt-2 float-end" href="{{ url_for('home.profile_collected_anime') }}">See all</a>
+		{% endif %}
+	{% else %}
+		<i>Animes added to your collection will be shown here.</i>
+		<hr/>
+	{% endif %}
 
 {% endblock %}

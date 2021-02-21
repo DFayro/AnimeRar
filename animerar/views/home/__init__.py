@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from flask_login import login_required
+from flask_login import current_user, login_required
 
 from animerar.core import NavBar
 
@@ -16,4 +16,18 @@ def index():
 @login_required
 def profile():
 	navbar = NavBar.default_bar()
-	return render_template("profile.html", navbar=navbar)
+
+	collected_anime = current_user.collected_anime[:5]
+	anime_collected_count = len(current_user.collected_anime)
+
+	return render_template("profile.html", navbar=navbar, collected_anime=collected_anime,
+						   anime_collected_count=anime_collected_count)
+
+
+@blueprint.route("/profile/collected")
+def profile_collected_anime():
+	navbar = NavBar.default_bar()
+
+	collected_anime = current_user.collected_anime
+
+	return render_template("profile_collected.html", navbar=navbar, collected_anime=collected_anime)
