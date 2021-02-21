@@ -8,6 +8,12 @@
 
 {% block content %}
 	<div id="header">
+		{% if current_user.is_authenticated %}
+			<div id="admin-bar">
+				<a href="{{ url_for('anime.edit', anime_id=anime.id) }}"><i class="bi bi-wrench"></i></a>
+				<a href="{{ url_for('anime.delete', anime_id=anime.id) }}"><i class="bi bi-x-octagon-fill"></i></a>
+			</div>
+		{% endif %}
 		<h1>{{ anime.title }}</h1>
 		<h2>{{ anime.en_title if anime.en_title else anime.jp_title }}</h2>
 	</div>
@@ -59,15 +65,6 @@
 				{% else %}
 					No synopsis added..
 				{% endif %}
-			</p>
-			<hr/>
-
-			<h5>Characters</h5>
-			<p>
-				Kazuma<br/>
-				Aqua<br/>
-				Megumin<br/>
-				Darkness<br/>
 			</p>
 			<hr/>
 

@@ -19,6 +19,20 @@
 	margin-bottom: 20px;
 }
 
+#admin-bar {
+	float: right;
+	background-color: #333;
+	padding: 0 5px 5px;
+	color: white;
+	border-radius: 4px;
+	font-size: 14pt;
+	border: 1px solid white;
+}
+
+#admin-bar a {
+	margin-right: 6px;
+}
+
 #info-bar {
 	background-color: #555;
 	margin-right: 12px;

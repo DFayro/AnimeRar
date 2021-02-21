@@ -45,7 +45,7 @@ def page(anime_id):
 	return render_template("anime_page.html", navbar=navbar, anime=anime, liked=is_liked)
 
 
-@blueprint.route("/<int:anime_id>/add")
+@blueprint.route("/<int:anime_id>/collect")
 @login_required
 def user_collect(anime_id):
 	anime = Anime.get(id=anime_id)
@@ -59,7 +59,7 @@ def user_collect(anime_id):
 	return redirect(url_for('anime.page', anime_id=anime_id))
 
 
-@blueprint.route("/<int:anime_id>/remove")
+@blueprint.route("/<int:anime_id>/uncollect")
 @login_required
 def user_remove(anime_id):
 	anime = Anime.get(id=anime_id)
@@ -73,6 +73,31 @@ def user_remove(anime_id):
 	db.session.commit()
 
 	return redirect(url_for('anime.page', anime_id=anime_id))
+
+
+@blueprint.route("/<int:anime_id>/delete")
+@login_required
+def delete(anime_id):
+	anime = Anime.get(id=anime_id)
+
+	if not anime:
+		abort(404)
+
+	db.session.delete(anime)
+	db.session.commit()
+
+	return redirect(url_for('anime.index'))
+
+
+@blueprint.route("/<int:anime_id>/edit")
+@login_required
+def edit(anime_id):
+	anime = Anime.get(id=anime_id)
+
+	if not anime:
+		abort(404)
+
+	return redirect(url_for('anime.index'))
 
 
 class AddAnimeForm(InlineValidatedForm):
