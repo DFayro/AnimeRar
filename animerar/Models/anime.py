@@ -44,12 +44,3 @@ class AnimePageComment(Model):
 	anime = Column(Integer, ForeignKey('anime.id'))
 	comment_text = Column(String(100))
 	comment_author = Column(Integer, ForeignKey('user.id'))
-
-
-class VoiceActor(Model):
-	__tablename__ = "voice_actor"
-
-	id = Column(Integer, primary_key=True, autoincrement=True)
-	anime_id = Column(Integer, ForeignKey('anime.id'))
-
-	name = Column(String(100))
