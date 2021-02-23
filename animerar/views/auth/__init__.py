@@ -1,11 +1,49 @@
 import flask_login
 from flask import Blueprint, redirect, render_template, request, url_for
+from wtforms import BooleanField, PasswordField, StringField, validators
 
 from animerar.core import NavBar, validation
+from animerar.core.form import InlineValidatedForm
 from animerar.db import db_inst as db
 from animerar.models import User
 
 blueprint = Blueprint("auth", __name__, template_folder="templates", static_folder="static")
+
+
+class LoginForm(InlineValidatedForm):
+	email = StringField(
+		"E-mail",
+		render_kw={
+			"placeholder": "E-mail",
+		},
+		validators=[
+			validators.DataRequired("Please enter an email address."),
+			validators.Regexp(
+				"^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,3})$",
+				message="Not an email address")
+		]
+
+	)
+
+	password = PasswordField(
+		"Password",
+		render_kw={
+			"placeholder": "Password",
+		},
+		validators=[
+			validators.DataRequired("Please enter a password."),
+			validators.Length(min=8, max=64, message="Password should be 8 characters or more")
+		]
+
+	)
+
+	remember_me = BooleanField(
+		"Remember me?",
+		render_kw={
+			"placeholder": "Password",
+			"class": "form-check-input"
+		}
+	)
 
 
 @blueprint.route("/", methods=['GET', 'POST'])
@@ -15,28 +53,26 @@ def index():
 
 	navbar = NavBar.default_bar()
 
-	if request.method == "POST":
-		# Todo reduce db calls
-		email = request.form.get("email")
-		password = request.form.get("password")
-		remember_me = request.form.get("remember_me")
+	login_form = LoginForm()
 
-		if not email:
-			error = "Enter a valid email address"
-		elif not password:
-			error = "Enter a password"
-		elif not User.get(email) or not User.get(email).check_password(password):
-			error = "Login failed"
-		else:
-			# Login
-			flask_login.login_user(User.get(email), remember=remember_me)
+	if login_form.validate_on_submit():
+		print("GoGoGo")
+		valid = False
+
+		user = User.query.filter(User.email.like(login_form.email.data)).first()
+
+		if user:
+			if user.check_password(login_form.password.data):
+				valid = True
+
+		if valid:
+			flask_login.login_user(user, remember=login_form.remember_me.data)
 			next = request.args.get("next")
-
 			return redirect(next or url_for("home.index"))
 
-		return render_template("login.html", navbar=navbar, login_error=error)
+		return render_template("login.html", navbar=navbar, login_form=login_form, login_error="Login failed.")
 
-	return render_template("login.html", navbar=navbar)
+	return render_template("login.html", navbar=navbar, login_form=login_form)
 
 
 @blueprint.route("/register", methods=['GET', 'POST'])
