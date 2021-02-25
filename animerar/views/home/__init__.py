@@ -23,8 +23,15 @@ def profile():
 	collected_anime = current_user.collected_anime[:5]
 	anime_collected_count = len(current_user.collected_anime)
 
-	return render_template("profile.html", navbar=navbar, collected_anime=collected_anime,
-						   anime_collected_count=anime_collected_count)
+	anime_comment_count = len(current_user.anime_comments)
+
+	return render_template(
+		"profile.html",
+		navbar=navbar,
+		collected_anime=collected_anime,
+		anime_collected_count=anime_collected_count,
+		anime_comment_count=anime_comment_count
+	)
 
 
 @blueprint.route("/profile/collected")

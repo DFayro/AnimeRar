@@ -38,21 +38,23 @@
 
 				<h5>Information</h5>
 				<p>
-					{% if anime.episodes %}
-						<b>{{ anime.episodes }}</b> 12<br/>
-					{% endif %}
 					<b>Premiered:</b> {{ anime.premiered }}<br/>
+					{% if anime.episodes %}
+						<b>Episodes:</b> {{ anime.episodes }}<br/>
+					{% endif %}
 				</p>
 
-				<h5>Titles</h5>
-				<p>
-					{% if anime.jp_title %}
-						<b>日本:</b> {{ anime.jp_title }}<br/>
-					{% endif %}
-					{% if anime.en_title %}
-						<b>English:</b> {{ anime.en_title }}<br/>
-					{% endif %}
-				</p>
+				{% if anime.jp_title or anime.en_title %}
+					<h5>Titles</h5>
+					<p>
+						{% if anime.jp_title %}
+							<b>日本:</b> {{ anime.jp_title }}<br/>
+						{% endif %}
+						{% if anime.en_title %}
+							<b>English:</b> {{ anime.en_title }}<br/>
+						{% endif %}
+					</p>
+				{% endif %}
 
 			</div>
 		</div>
@@ -71,7 +73,26 @@
 	</div>
 	<div id="comments">
 		<h4>Comments</h4>
-		Be the first to add a comment!
 		<hr>
+		<form action="" method="post">
+			{{ comment_form.csrf_token }}
+
+			{{ comment_form.text() }}
+			<button type="submit" class="btn btn-dark mb-3 mt-3">COMMENT</button>
+		</form>
+
+		{% if anime.comments %}
+			<div id="comment-box">
+				{% for comment in anime.comments %}
+					<div class="comment">
+						<div class="comment__timestamp">{{ comment.placed_on.strftime('%H:%M %d-%b \'%y') }}</div>
+						<h6>{{ comment.author.display_name }}</h6>
+						{{ comment.text }}
+					</div>
+				{% endfor %}
+			</div>
+		{% else %}
+			<h6><i>Be the first to write a comment!</i></h6>
+		{% endif %}
 	</div>
 {% endblock %}

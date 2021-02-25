@@ -21,3 +21,4 @@ Integer = db_inst.Integer
 String = db_inst.String
 Float = db_inst.Float
 BLOB = db_inst.BLOB
+DateTime = db_inst.DateTime

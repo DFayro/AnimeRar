@@ -1,12 +1,15 @@
+from datetime import datetime
+
 from flask import Blueprint, abort, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
+from flask_wtf import FlaskForm
 from markupsafe import Markup
 from wtforms import FileField, IntegerField, SelectField, StringField, TextAreaField, validators
 
 from animerar.core import NavBar
 from animerar.core.form import InlineValidatedForm
 from animerar.db import db_inst as db
-from animerar.models.anime import Anime
+from animerar.models.anime import Anime, AnimePageComment
 
 blueprint = Blueprint("anime", __name__, template_folder="templates", static_folder="static")
 
@@ -28,7 +31,12 @@ def index():
 	return render_template("anime_front.html", navbar=navbar, animes=animes)
 
 
-@blueprint.route("/<int:anime_id>")
+class CommentForm(FlaskForm):
+	text = TextAreaField("", render_kw={"class": "form-control", "placeholder": "Add a comment!"},
+						 validators=[validators.DataRequired()])
+
+
+@blueprint.route("/<int:anime_id>", methods=['GET', 'POST'])
 def page(anime_id):
 	anime = Anime.get(id=anime_id)
 
@@ -42,7 +50,20 @@ def page(anime_id):
 			is_liked = True
 
 	navbar = NavBar.default_bar()
-	return render_template("anime_page.html", navbar=navbar, anime=anime, liked=is_liked)
+	comment_form = CommentForm()
+
+	if comment_form.validate_on_submit():
+		comment = AnimePageComment(anime_id=anime.id, author_id=current_user.id, text=comment_form.text.data,
+								   placed_on=datetime.now())
+		anime.comments.append(comment)
+		db.session.commit()
+
+	return render_template(
+		"anime_page.html",
+		navbar=navbar,
+		anime=anime,
+		liked=is_liked,
+		comment_form=comment_form)
 
 
 @blueprint.route("/<int:anime_id>/collect")
@@ -160,6 +181,7 @@ def add():
 			en_title=form.en_title.data,
 			synopsis=form.synopsis.data,
 			premiered=f"{form.premiered_season.data} {form.premiered_year.data}",
+			episodes=form.episodes.data,
 			cover_art=img_data
 		)
 

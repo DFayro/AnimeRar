@@ -17,6 +17,7 @@ class Anime(Model):
 	en_title = Column(String(100))
 	synopsis = Column(String(500))
 	premiered = Column(String(20))
+	episodes = Column(Integer)
 
 	cover_art = Column(BLOB())
 
@@ -40,7 +41,11 @@ class Anime(Model):
 class AnimePageComment(Model):
 	__tablename__ = "anime_page_comment"
 
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+
 	id = Column(Integer, primary_key=True, autoincrement=True)
-	anime = Column(Integer, ForeignKey('anime.id'))
-	comment_text = Column(String(100))
-	comment_author = Column(Integer, ForeignKey('user.id'))
+	anime_id = Column(Integer, ForeignKey('anime.id'))
+	author_id = Column(Integer, ForeignKey('user.id'))
+	text = Column(String(100))
+	placed_on = Column(DateTime)

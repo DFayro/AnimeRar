@@ -25,9 +25,10 @@ class User(Model, UserMixin):
 	first_name = Column(String(28))
 	last_name = Column(String(28))
 
-	collected_anime = relationship('Anime', secondary=collected_anime)
-
 	password = Column(String(64))
+
+	collected_anime = relationship('Anime', secondary=collected_anime)
+	anime_comments = relationship("AnimePageComment", backref="author")
 
 	@classmethod
 	def user_exists(cls, email):
