@@ -1,0 +1,29 @@
+{
+	"users": [
+		{
+			"email": "Dan@Fayro.com",
+			"first_name": "Daniel",
+			"last_name": "Fayro",
+			"display_name": "Dan",
+			"password": "dandandan"
+		},
+		{
+			"email": "Mohamed@email.com",
+			"first_name": "Mohamed",
+			"last_name": "",
+			"display_name": "Chaasin",
+			"password": "chaasinnn"
+		}
+	],
+	"anime": [
+		{
+			"title": "Kono Subarashii Sekai ni Shukufuku wo!",
+			"jp_title": "この素晴らしい世界に祝福を！",
+			"en_title": "KonoSuba: God's Blessing on This Wonderful World!",
+			"episodes": 10,
+			"cover_art": "konosuba.jpg",
+			"premiered": "Winter 2016",
+			"synopsis": ""
+		}
+	]
+}
