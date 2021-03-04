@@ -23,10 +23,10 @@ def build_app():
 	app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 	# ###############################################################################################################
-	# Generally, inline import statements are to be avoided. However in
-	# this instance it is recommended to only load the views and models after the database has been instantiated.
-	# Database instantiation only happens on app creation, therefore we need to import them later to avoid circular
-	# dependencies. The same applies for flask extensions like flask-sqlalchemy, flask-login and flask-wtforms.
+	# Generally, inline import statements are to be avoided. However in this instance it is recommended to only load
+	# the views and models after the database has been instantiated. Database instantiation only happens on app
+	# creation, therefore we need to import them later to avoid circular dependencies. The same applies for flask
+	# extensions like flask-sqlalchemy, flask-login and flask-wtforms.
 	# ###############################################################################################################
 
 	# Init database and flask extensions

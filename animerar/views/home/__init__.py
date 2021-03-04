@@ -2,6 +2,7 @@ from flask import Blueprint, render_template
 from flask_login import current_user, login_required
 
 from animerar.core import NavBar
+from animerar.models import CarouselImage
 from animerar.models.anime import Anime
 
 blueprint = Blueprint("home", __name__, template_folder="templates", static_folder="static")
@@ -11,8 +12,10 @@ blueprint = Blueprint("home", __name__, template_folder="templates", static_fold
 def index():
 	recently_added_anime = Anime.query.order_by(Anime.title.desc()).limit(3).all()
 
+	carousel = CarouselImage.query.all()
+
 	navbar = NavBar.default_bar(active_page="Home")
-	return render_template("home.html", navbar=navbar, recently_added_anime=recently_added_anime)
+	return render_template("home.html", navbar=navbar, recently_added_anime=recently_added_anime, caroucel=carousel)
 
 
 @blueprint.route("/profile")

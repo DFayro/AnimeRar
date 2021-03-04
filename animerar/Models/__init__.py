@@ -44,3 +44,16 @@ class User(Model, UserMixin):
 
 	def check_password(self, password: str):
 		return security.check_password_hash(self.password, password)
+
+
+class CarouselImage(Model):
+
+	def __init__(self, *args, **kwargs):
+		Model.__init__(self, *args, **kwargs)
+
+	id = Column(Integer, primary_key=True, nullable=False)
+	anime_id = Column(Integer, ForeignKey('anime.id'))
+	subtext = Column(String(255))
+	image = Column(BLOB)
+
+	anime = relationship('Anime')

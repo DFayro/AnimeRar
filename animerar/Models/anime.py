@@ -46,6 +46,7 @@ class AnimePageComment(Model):
 
 	id = Column(Integer, primary_key=True, autoincrement=True)
 	anime_id = Column(Integer, ForeignKey('anime.id'))
+
 	author_id = Column(Integer, ForeignKey('user.id'))
 	text = Column(String(100))
 	placed_on = Column(DateTime)
