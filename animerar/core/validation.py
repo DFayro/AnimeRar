@@ -6,10 +6,7 @@ EMAIL_REGEX_FORMAT = "^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,3})$
 
 # Private API
 def _is_format(str, format):
-	if (re.match(format, str)):
-		return True
-
-	return False
+	return re.match(format, str)
 
 
 def is_password(str):
