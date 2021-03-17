@@ -74,12 +74,14 @@
 	<div id="comments">
 		<h4>Comments</h4>
 		<hr>
-		<form action="" method="post">
-			{{ comment_form.csrf_token }}
+		{% if current_user.is_authenticated %}
+			<form action="" method="post">
+				{{ comment_form.csrf_token }}
 
-			{{ comment_form.text() }}
-			<button type="submit" class="btn btn-dark mb-3 mt-3">COMMENT</button>
-		</form>
+				{{ comment_form.text() }}
+				<button type="submit" class="btn btn-dark mb-3 mt-3">COMMENT</button>
+			</form>
+		{% endif %}
 
 		{% if anime.comments %}
 			<div id="comment-box">
