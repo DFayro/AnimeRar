@@ -5,7 +5,7 @@ import animerar.db
 
 SHARED_TEMPLATE_FOLDER = "views/sh_templates"
 SHARED_STATIC_FOLDER = "views/sh_static"
-DATABASE_URI = "sqlite:///./test.db"
+DATABASE_URI = "sqlite:///./animerar.db"
 
 
 def page_not_found(e):
